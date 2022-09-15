@@ -3,6 +3,7 @@ import Layout from '../Layout';
 import { showError, showLoading } from '../../utils/messages';
 import { login } from '../../api/apiAuth';
 import { Redirect } from 'react-router-dom';
+import { authenticate } from '../../utils/auth';
 
 const Login = () => {
     const [values, setValues] = useState({
@@ -35,13 +36,15 @@ const Login = () => {
 
         login({ email, password })
             .then(response => {
-                setValues({
-                    email: '',
-                    password: '',
-                    success: true,
-                    disabled: false,
-                    loading: false,
-                    redirect: true
+                authenticate(response.data.token, () => {
+                    setValues({
+                        email: '',
+                        password: '',
+                        success: true,
+                        disabled: false,
+                        loading: false,
+                        redirect: true
+                    })
                 })
             })
             .catch(err => {
