@@ -1,5 +1,7 @@
 import { Switch, Route } from 'react-router-dom';
+import AdminDashboard from './admin/AdminDashboard';
 import Home from './home/Home';
+import AdminRoute from './protectedRoutes/AdminRoute';
 import PrivateRoute from './protectedRoutes/PrivateRoute';
 import Dashboard from './user/Dashboard';
 import Login from './user/Login';
@@ -12,9 +14,12 @@ const Main = () => {
                 <Route path="/" exact component={Home} />
                 <Route path="/login" exact component={Login} />
                 <Route path="/register" exact component={Register} />
-                <PrivateRoute path="/dashboard">
+                <PrivateRoute path="/user/dashboard">
                     <Dashboard />
                 </PrivateRoute>
+                <AdminRoute path="/admin/dashboard">
+                    <AdminDashboard />
+                </AdminRoute>
             </Switch>
         </div>
     )
