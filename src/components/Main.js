@@ -1,4 +1,4 @@
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import AdminDashboard from './admin/AdminDashboard';
 import Home from './home/Home';
 import AdminRoute from './protectedRoutes/AdminRoute';
@@ -20,6 +20,7 @@ const Main = () => {
                 <AdminRoute path="/admin/dashboard">
                     <AdminDashboard />
                 </AdminRoute>
+                <Redirect to="/" />
             </Switch>
         </div>
     )
