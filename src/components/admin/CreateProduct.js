@@ -50,7 +50,7 @@ const CreateProduct = () => {
                     formData: new FormData()
                 })
             })
-    }, []);
+    }, [values]);
 
     const handleChange = (e) => {
         const value = e.target.name === "photo" ? e.target.files[0] : e.target.value;
