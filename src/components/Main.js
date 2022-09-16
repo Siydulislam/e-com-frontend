@@ -3,6 +3,7 @@ import AdminDashboard from './admin/AdminDashboard';
 import CreateCategory from './admin/CreateCategory';
 import CreateProduct from './admin/CreateProduct';
 import Home from './home/Home';
+import ProductDetails from './home/ProductDetails';
 import AdminRoute from './protectedRoutes/AdminRoute';
 import PrivateRoute from './protectedRoutes/PrivateRoute';
 import Dashboard from './user/Dashboard';
@@ -16,6 +17,7 @@ const Main = () => {
                 <Route path="/" exact component={Home} />
                 <Route path="/login" exact component={Login} />
                 <Route path="/register" exact component={Register} />
+                <Route path="/product/:id" exact component={ProductDetails} />
                 <PrivateRoute path="/user/dashboard">
                     <Dashboard />
                 </PrivateRoute>
