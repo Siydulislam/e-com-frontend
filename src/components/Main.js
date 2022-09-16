@@ -1,5 +1,6 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
 import AdminDashboard from './admin/AdminDashboard';
+import CreateCategory from './admin/CreateCategory';
 import Home from './home/Home';
 import AdminRoute from './protectedRoutes/AdminRoute';
 import PrivateRoute from './protectedRoutes/PrivateRoute';
@@ -19,6 +20,9 @@ const Main = () => {
                 </PrivateRoute>
                 <AdminRoute path="/admin/dashboard">
                     <AdminDashboard />
+                </AdminRoute>
+                <AdminRoute path="/create/category">
+                    <CreateCategory />
                 </AdminRoute>
                 <Redirect to="/" />
             </Switch>
