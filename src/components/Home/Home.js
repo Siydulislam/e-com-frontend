@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { getCategories, getFilteredProducts, getProducts } from "../../api/apiProduct";
 import { showError, showSuccess } from "../../utils/messages";
+import { prices } from "../../utils/prices";
 import Layout from "../Layout";
 import Card from "./Card";
 import CheckBox from "./CheckBox";
+import RadioBox from "./RadioBox";
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -32,9 +34,22 @@ const Home = () => {
 
     const handleFilters = (myFilters, filterBy) => {
         const newFilters = { ...filters };
+
         if (filterBy === 'category') {
             newFilters[filterBy] = myFilters;
         }
+
+        if (filterBy === 'price') {
+            const data = prices;
+            let arr = [];
+            for (let i in data) {
+                if (data[i].id === parseInt(myFilters)) {
+                    arr = data[i].arr;
+                }
+            }
+            newFilters[filterBy] = arr;
+        }
+
         setFilters(newFilters);
 
         getFilteredProducts(skip, limit, newFilters, order, sortBy)
@@ -54,6 +69,15 @@ const Home = () => {
                                 handleFilters={myFilters => handleFilters(myFilters, 'category')}
                             />
                         </ul>
+                    </div>
+                    <div className="col-sm-5">
+                        <h5>Filter By Price:</h5>
+                        <div className="row">
+                            <RadioBox
+                                prices={prices}
+                                handleFilters={myFilters => handleFilters(myFilters, 'price')}
+                            />
+                        </div>
                     </div>
                 </div>
             </>
